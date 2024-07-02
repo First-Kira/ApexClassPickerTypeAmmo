@@ -1,0 +1,58 @@
+# List of characters
+characters = [
+  "bloodhound", "Gibraltar", "lifeline", "pathfinder", "wraith",
+  "bangalore", "caustic", "mirage", "octane", "wattson", "crypto",
+  "revenant", "loba", "rampart", "horizon", "fuse", "Valkyrie", "seer",
+  "ash", "mad Maggie", "Newcastle", "vantage", "catalyst", "ballistic",
+  "conduit", "alter"
+]
+
+# Randomly select 3 characters
+selected_characters = characters.sample(3)
+
+puts "Randomly selected characters:"
+puts selected_characters
+
+# Define players
+players = ['srhoe', 'itzTimmyz', 'Light484']
+
+# Assign selected characters to players
+player_characters = players.zip(selected_characters).to_h
+
+# Display the assignments
+player_characters.each do |player, character|
+  puts "#{player} is assigned character #{character}"
+end
+
+# Define available guns categorized by type
+guns = {
+  "AR" => ["VK-47 Flatline", "Hemlok Burst AR", "R-301", "Nemesis"],
+  "smg" => ["Alternator", "Prowler", "R-99", "Volt", "CAR"],
+  "lmg" => ["Devotion", "L-STAR", "Spitfire", "Rampage"],
+  "marksman" => ["G7 Scout", "Triple Take", "30-30 Repeater", "Bocek Compound Bow"],
+  "sniper" => ["Charge Rifle", "Sentinel", "Longbow", "Kraber"],
+  "shotgun" => ["EVA-8 Auto", "Mastiff", "Mozambique", "Peacekeeper"],
+  "pistol" => ["RE-45", "Wingman", "P2020"]
+}
+
+# Function to assign guns to players
+def assign_guns(players, guns)
+  assignments = {}
+
+  players.each do |player|
+    gun_type = guns.keys.sample
+    gun = guns[gun_type].sample
+
+    assignments[player] = { type: gun_type, gun: gun }
+  end
+
+  assignments
+end
+
+# Assign guns to players
+gun_assignments = assign_guns(players, guns)
+
+# Display the gun assignments
+gun_assignments.each do |player, guns|
+  puts "#{player} will have a #{guns[:type]} (#{guns[:gun]})"
+end
